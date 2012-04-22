@@ -7,10 +7,8 @@ package br.edu.fasa.vendas.dataacess;
 import br.edu.fasa.vendas.domainModel.Repositorio;
 import com.sun.corba.se.spi.activation.Repository;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 
 /**
  *
@@ -28,36 +26,48 @@ public class DAO<T> implements Repositorio<T>{
         classe = t;
     }
 
-
-
-
+    protected EntityManager getEntityManager() {
+        return manager;
+    }
     @Override
-    public void salvar(T obj) {
-
+     public void salvar(T obj) {
         EntityTransaction tran = manager.getTransaction();
-        try{
+        try {
             tran.begin();
             manager.persist(obj);
             tran.commit();
         }
-        catch(Exception e){
+        catch(Exception ex){
             tran.rollback();
+            ex.printStackTrace();
         }
+    
     }
 
     @Override
     public T abrir(Long id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return (T)manager.find(classe, id);
     }
 
     @Override
     public void apagar(T obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        EntityTransaction tran = manager.getTransaction();
+        try {
+            tran.begin();
+            manager.remove(obj);
+            tran.commit();
+        }
+        catch(Exception ex){
+            tran.rollback();
+            ex.printStackTrace();
+        }
     }
 
     @Override
     public List<T> listar() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        CriteriaBuilder query = manager.getCriteriaBuilder();
+        Query q2 = manager.createQuery(query.createQuery());
+        return q2.getResultList();
     }
 
 

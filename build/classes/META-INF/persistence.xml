@@ -6,9 +6,8 @@
     <class>br.edu.fasa.vendas.domainModel.Produto</class>
     <class>br.edu.fasa.vendas.domainModel.Venda</class>
     <class>br.edu.fasa.vendas.domainModel.VendaItem</class>
-    <class>yy.yyyyyx</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:jtds:sqlserver://localhost/teste"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:jtds:sqlserver://localhost/vendas"/>
       <property name="javax.persistence.jdbc.password" value="123"/>
       <property name="javax.persistence.jdbc.driver" value="net.sourceforge.jtds.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.user" value="saulo"/>
