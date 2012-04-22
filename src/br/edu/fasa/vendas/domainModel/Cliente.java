@@ -17,6 +17,7 @@ import javax.persistence.*;
 
 public class Cliente implements Serializable{
     
+    
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="codigo")
